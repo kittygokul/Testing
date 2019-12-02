@@ -1,11 +1,11 @@
-package GETExamples;
+package RestfulBooker.getExamples;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
 
-public class GetBookingIds_RestfulBookerUsingBDDStyle {
+public class BDDStyleGetRequest {
 
 	
 	@Test

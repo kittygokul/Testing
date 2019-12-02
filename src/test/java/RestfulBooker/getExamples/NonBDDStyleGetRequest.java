@@ -1,4 +1,4 @@
-package GETExamples;
+package RestfulBooker.getExamples;
 
 import org.testng.annotations.Test;
 
@@ -6,7 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
-public class GetBookingIds_RestfulBooker {
+public class NonBDDStyleGetRequest {
 
 	// Without static import and builder pattern
 	@Test

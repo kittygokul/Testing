@@ -5,23 +5,26 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
+import io.restassured.specification.RequestSpecification;
 
 public class NonBDDStyleGetRequest {
 
 	// Without static import and builder pattern
 	@Test
 	public void GetBookingIds_VerifyStatusCode() {
-		/*
-		 * RestAssured is a class which has a static overloaded method named get(). It
-		 * returns a Response reference which contains all response details. Response is
-		 * an interface. We are using overloaded version of get(String path) where path
-		 * is URI.
-		 */
-		Response res = RestAssured.get("https://restful-booker.herokuapp.com/booking");
 		
-
+		
+		// Create a request specification 
+		RequestSpecification request= RestAssured.given();
+		
+		//Adding URI
+		request.baseUri("https://restful-booker.herokuapp.com/booking");
+		
+		// Calling GET method on URI. After hitting we get Response
+		Response response = request.get();
+		
 		// Let's print response body.
-		String resString = res.asString();
+		String resString = response.asString();
 		System.out.println("Respnse Details : " + resString);
 
 		/*
@@ -29,7 +32,7 @@ public class NonBDDStyleGetRequest {
 		 * ValidatableResponse type of response using then() method of Response
 		 * interface. ValidatableResponse is also an interface.
 		 */
-		ValidatableResponse valRes = res.then();
+		ValidatableResponse valRes = response.then();
 		// It will check if status code is 200
 		valRes.statusCode(200);
 		// It will check if status line is as expected

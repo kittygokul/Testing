@@ -22,7 +22,7 @@ public class BDDStyleGetRequest {
 			.statusCode(200)
 			.statusLine("HTTP/1.1 200 OK")
 			// To verify booking count
-			.body("bookingid.sum()", Matchers.hasSize(10))
+			.body("bookingid.sum()", Matchers.is(55))
 			// To verify booking id at index 3
 			.body("bookingid[3]", Matchers.equalTo(1));			
 		

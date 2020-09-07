@@ -7,7 +7,6 @@ import io.restassured.RestAssured;
 
 public class BDDStyleGetRequest {
 
-	
 	@Test
 	public void GetBookingIds_VerifyStatusCode() {
 		

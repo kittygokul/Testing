@@ -5,23 +5,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.ResponseSpecification;
 
-public class UsingResponseSpecification {
+public class ResponseSpecBuilderExample {
 	
-	ResponseSpecification responseSpecification = null;
+ResponseSpecification responseSpecification = null;
 	
 	@BeforeClass
 	public void setupResponseSpecification()
 	{
-		// Create a ResponseSpecification 
-		responseSpecification=  RestAssured.expect();
-		responseSpecification.contentType(ContentType.JSON);
-		responseSpecification.statusCode(200);
-		responseSpecification.time(Matchers.lessThan(5000L));
-		responseSpecification.statusLine("HTTP/1.1 200 OK");
-		
+		// Create a ResponseSpecification using ResponseSpecBuilder
+		ResponseSpecBuilder responseSpecBuilder = new ResponseSpecBuilder();
+		responseSpecBuilder.expectStatusCode(200);
+		responseSpecBuilder.expectStatusLine("HTTP/1.1 200 OK");
+		responseSpecBuilder.expectContentType(ContentType.JSON);
+		responseSpecBuilder.expectResponseTime(Matchers.lessThan(5000L));	
+		responseSpecification = responseSpecBuilder.build();
 	}
 	
 	@Test
@@ -60,5 +61,6 @@ public class UsingResponseSpecification {
 		   .body("size()", Matchers.equalTo(0));
 			
 	}
+
 
 }

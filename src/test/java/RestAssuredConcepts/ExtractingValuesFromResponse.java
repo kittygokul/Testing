@@ -32,7 +32,7 @@ public class ExtractingValuesFromResponse {
 		// Calling POST method on URI. After hitting we get Response
 		Response response = request.post();
 		
-		response.pa
+		
 	}
 
 }
